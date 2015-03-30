@@ -1,19 +1,15 @@
 package um.edu.mt;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest extends TestCase{
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+public class AppTest {
+
+    @Test
+    public void initialTest() {
+        App.main();
     }
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+
 }
