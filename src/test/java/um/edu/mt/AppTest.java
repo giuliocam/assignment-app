@@ -8,6 +8,7 @@ import org.junit.Test;
 public class AppTest {
 
     @Test
+    //test
     public void initialTest() {
         App.main();
         System.out.println("...");
