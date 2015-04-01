@@ -1,11 +1,8 @@
 package um.edu.mt;
 
-<<<<<<< HEAD
 import junit.framework.Assert;
 import org.junit.Before;
-=======
 import org.junit.Assert;
->>>>>>> origin/giulio
 import org.junit.Test;
 
 /**
@@ -13,21 +10,27 @@ import org.junit.Test;
  */
 public class AppTest {
 
-    @Test
-<<<<<<< HEAD
+
     //test
     Account test = new Account();
+    @Test
     public void initialTest() {
         App.main();
 
         System.out.println("...");
 
     }
-
     @Test
     public void adjustBalanceTest(){
-        Assert.assertEquals(true,test.adjustBalance(3000));
-=======
+        Assert.assertEquals(false,test.adjustBalance(-1));
+
+    }
+
+    @Test
+    public void adjustBalanceTest2() {
+        Assert.assertEquals(true, test.adjustBalance(3000));
+
+    }
     public void uniqueIDTest() {
 
         AccountDatabase aDB = new AccountDatabase();
@@ -55,14 +58,8 @@ public class AppTest {
 
         Assert.assertFalse(tm.processTransaction(1, 3, 2000)); //.
 
->>>>>>> origin/giulio
-
     }
-    @Test
-    public void adjustBalanceTest(){
-        Assert.assertEquals(false,test.adjustBalance(-1));
 
-    }
 
 
 
