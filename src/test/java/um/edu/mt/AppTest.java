@@ -24,5 +24,11 @@ public class AppTest {
         Assert.assertEquals(true,test.adjustBalance(3000));
 
     }
+    @Test
+    public void adjustBalanceTest(){
+        Assert.assertEquals(false,test.adjustBalance(-1));
+
+    }
+
 
 }
