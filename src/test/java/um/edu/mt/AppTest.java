@@ -5,9 +5,6 @@ import org.junit.Before;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
 public class AppTest {
 
     Account test;
@@ -16,13 +13,7 @@ public class AppTest {
 
         test = new Account();
     }
-    @Test
-    public void initialTest() {
-        App.main();
 
-        System.out.println("...");
-
-    }
     @Test
     public void adjustBalanceTest(){
         long originalBalance = test.getAccountBalance();
