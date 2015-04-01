@@ -23,4 +23,8 @@ public class AccountDatabase {
         return null;
     }
 
+    public int getSize() {
+        return list.size();
+    }
+
 }
