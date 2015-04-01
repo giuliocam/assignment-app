@@ -1,6 +1,5 @@
 package um.edu.mt;
 
-//import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,14 +32,6 @@ public class AppTest {
         long originalBalance = test.getAccountBalance();
         test.adjustBalance(1);
         Assert.assertEquals(originalBalance+1,test.getAccountBalance());
-
-    }
-    @Test
-    public void adjustBalanceTest3() {
-        long originalBalance = test.getAccountBalance();
-        test.adjustBalance(1);
-        Assert.assertEquals(originalBalance,test.getAccountBalance());
-
     }
 
     @Test
@@ -55,6 +46,7 @@ public class AppTest {
 
     @Test
     public void uniqueIDTest2() {
+        Assert.assertEquals(true,aDB.addAccount(test));
         Assert.assertEquals(false,aDB.addAccount(c));
     }
 
@@ -62,9 +54,5 @@ public class AppTest {
     public void balanceTest() {
         Assert.assertEquals(false,tm.processTransaction(1, 2, 2000));
     }
-
-
-
-
 
 }
