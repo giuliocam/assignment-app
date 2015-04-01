@@ -34,7 +34,7 @@ public class AppTest {
         aDB.addAccount(a);
         aDB.addAccount(c);
 
-        Assert.assertFalse(tm.processTransaction(1, 3, 2000));
+        Assert.assertFalse(tm.processTransaction(1, 3, 2000)); //.
 
 
     }
