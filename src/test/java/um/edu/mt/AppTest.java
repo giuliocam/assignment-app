@@ -11,7 +11,7 @@ public class AppTest {
     //test
     public void initialTest() {
         App.main();
-        System.out.println("...");
+        System.out.println("Initial Test");
     }
 
 }
