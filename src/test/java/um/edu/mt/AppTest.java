@@ -19,6 +19,8 @@ public class AppTest {
         c = new Account(1, "c", 5);
     }
 
+
+
     @Test
     public void adjustBalanceTest(){
         long originalBalance = test.getAccountBalance();
@@ -31,7 +33,15 @@ public class AppTest {
     public void adjustBalanceTest2() {
         long originalBalance = test.getAccountBalance();
         test.adjustBalance(1);
-        Assert.assertEquals(originalBalance+1,test.getAccountBalance());
+        Assert.assertEquals(originalBalance + 1, test.getAccountBalance());
+    }
+
+    @Test
+    public void dbGetSize() {
+        aDB.addAccount(b);
+        aDB.addAccount(c);
+
+        Assert.assertEquals(2, aDB.getSize());
     }
 
     @Test
@@ -46,7 +56,7 @@ public class AppTest {
 
     @Test
     public void uniqueIDTest2() {
-        Assert.assertEquals(true,aDB.addAccount(test));
+        Assert.assertEquals(true, aDB.addAccount(test));
         Assert.assertEquals(false,aDB.addAccount(c));
     }
 
