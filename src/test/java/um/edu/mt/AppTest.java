@@ -39,6 +39,12 @@ public class AppTest {
 
     }
 
+    public void adjustBalanceTest3() {
+        long originalBalance = test.getAccountBalance();
+        test.adjustBalance(1);
+        Assert.assertEquals(originalBalance,test.getAccountBalance());
+
+    }
     
     public void uniqueIDTest() {
 
