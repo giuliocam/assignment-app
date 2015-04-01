@@ -14,6 +14,7 @@ public class AppTest {
     Account test = new Account();
     public void initialTest() {
         App.main();
+
         System.out.println("...");
 
     }
@@ -21,6 +22,7 @@ public class AppTest {
     @Test
     public void adjustBalanceTest(){
         Assert.assertEquals(true,test.adjustBalance(3000));
+
     }
 
 }
