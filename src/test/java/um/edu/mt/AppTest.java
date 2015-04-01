@@ -76,7 +76,6 @@ public class AppTest {
         boolean transaction = tm.processTransaction(1,2,500);
         try{
             Thread.sleep(16000);
-
         }catch(InterruptedException ex){
             Thread.currentThread().interrupt();
         }
