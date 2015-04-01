@@ -35,6 +35,10 @@ public class Account {
         accountName = name;
         accountBalance = amount;
     }
+    public Account(){
+
+    }
+
 
 
 
