@@ -7,11 +7,17 @@ import org.junit.Test;
 
 public class AppTest {
 
-    Account test;
+    AccountDatabase aDB;
+    TransactionManager tm;
+
+    Account test, b, c;
     @Before
     public void init() {
-
-        test = new Account();
+        aDB = new AccountDatabase();
+        tm = new TransactionManager(aDB);
+        test = new Account(1, "xyz", 1000);
+        b = new Account(2, "xyz", 2000);
+        c = new Account(1, "c", 5);
     }
 
     @Test
@@ -36,35 +42,27 @@ public class AppTest {
         Assert.assertEquals(originalBalance,test.getAccountBalance());
 
     }
-    
-    public void uniqueIDTest() {
 
-        AccountDatabase aDB = new AccountDatabase();
-        Account a = new Account(1, "xyz", 1000);
-        Account b = new Account(2, "xyz", 2000);
-        Account c = new Account(1, "xyz", 3000);
+    @Test
+    public void addAccountTest() {
+        Assert.assertEquals(true, aDB.addAccount(test));
+    }
 
-        Assert.assertEquals(true,aDB.addAccount(a));
+    @Test
+    public void uniqueIDTest1() {
         Assert.assertEquals(true,aDB.addAccount(b));
+    }
+
+    @Test
+    public void uniqueIDTest2() {
         Assert.assertEquals(false,aDB.addAccount(c));
     }
 
     @Test
     public void balanceTest() {
-
-        AccountDatabase aDB = new AccountDatabase();
-        TransactionManager tm = new TransactionManager(aDB);
-
-        Account a = new Account(1, "xyz", 1000);
-        //Account b = new Account(2, "xyzz", 2000);
-        Account c = new Account(3, "xyzzz", 3000);
-
-        aDB.addAccount(a);
-        aDB.addAccount(c);
-
-        Assert.assertEquals(false,tm.processTransaction(1, 3, 2000)); //.
-
+        Assert.assertEquals(false,tm.processTransaction(1, 2, 2000));
     }
+
 
 
 
