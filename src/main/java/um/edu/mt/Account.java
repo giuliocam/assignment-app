@@ -26,8 +26,9 @@ public class Account {
         return accountBalance;
     }
 
-    public void adjustBalance(long change) {
+    public boolean adjustBalance(long change) {
         this.accountBalance += change;
+        return true;
     }
 
     public Account(int id, String name,long amount) {
