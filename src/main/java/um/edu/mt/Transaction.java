@@ -20,7 +20,7 @@ public class Transaction {
 
         if(a == null || b == null) return false;
 
-        if(a.getAccountBalance() < b.getAccountBalance()) return false;
+        if(a.getAccountBalance() < amount) return false;
         else {
             a.adjustBalance(-amount);
             b.adjustBalance(amount);
