@@ -65,4 +65,22 @@ public class AppTest {
         Assert.assertEquals(false,tm.processTransaction(1, 2, 2000));
     }
 
+    @Test
+    public void transactionIntervalTest1(){
+        boolean transaction = tm.processTransaction(1,2,10);
+        Assert.assertEquals(false, tm.processTransaction(2,1,10));
+
+    }
+    @Test
+    public void transactionIntervalTest2(){
+        boolean transaction = tm.processTransaction(1,2,500);
+        try{
+            Thread.sleep(16000);
+
+        }catch(InterruptedException ex){
+            Thread.currentThread().interrupt();
+        }
+        Assert.assertEquals(true,tm.processTransaction(2,1,500));
+    }
+
 }
