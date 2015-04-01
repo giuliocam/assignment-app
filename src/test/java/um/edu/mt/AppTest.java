@@ -38,7 +38,7 @@ public class AppTest {
         Assert.assertEquals(originalBalance+1,test.getAccountBalance());
 
     }
-
+    @Test
     public void adjustBalanceTest3() {
         long originalBalance = test.getAccountBalance();
         test.adjustBalance(1);
