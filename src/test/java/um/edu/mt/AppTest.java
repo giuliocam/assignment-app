@@ -9,7 +9,7 @@ public class AppTest {
     AccountDatabase aDB;
     TransactionManager tm;
 
-    Account test, b, c;
+    Account test, b, c,d;
     @Before
     public void init() {
         aDB = new AccountDatabase();
@@ -17,6 +17,7 @@ public class AppTest {
         test = new Account(1, "xyz", 1000);
         b = new Account(2, "xyz", 2000);
         c = new Account(1, "c", 5);
+        d = new Account(4, "d", 50);
     }
 
 
@@ -103,6 +104,15 @@ public class AppTest {
 
         Assert.assertEquals(false, tm.processTransaction(3,1,10));
 
+    }
+
+    @Test
+    public void transactionIntervalTest4(){
+        aDB.addAccount(test);
+        aDB.addAccount(b);
+        aDB.addAccount(d);
+        tm.processTransaction(1, 4, 10);
+        Assert.assertEquals(false, tm.processTransaction(2,1,10));
     }
 
     @Test
