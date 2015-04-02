@@ -109,6 +109,7 @@ public class AppTest {
     public void AccGetTest(){
         Account acc = new Account(3,"d",10);
         Assert.assertEquals("d",acc.getAccountName());
+
     }
     @Test
     public void AccSetTest(){
@@ -121,4 +122,5 @@ public class AppTest {
         AccountDatabase db = new AccountDatabase();
         Assert.assertEquals(null,db.getAccount(4));
     }
+
 }
