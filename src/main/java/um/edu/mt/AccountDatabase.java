@@ -17,7 +17,7 @@ public class AccountDatabase {
     }
 
     public Account getAccount(int accNum) {
-            for(Account acc: list) {
+        for(Account acc: list) {
             if(acc.getAccountNumber() == accNum) return acc;
         }
         return null;

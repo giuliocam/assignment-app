@@ -96,6 +96,14 @@ public class AppTest {
         }
         Assert.assertEquals(true,tm.processTransaction(2,1,500));
     }
+    @Test
+    public void transactionIntervalTest3(){
+        aDB.addAccount(test);
+        aDB.addAccount(b);
+
+        Assert.assertEquals(false, tm.processTransaction(3,1,10));
+
+    }
 
     @Test
     public void AccGetTest(){
@@ -107,5 +115,10 @@ public class AppTest {
         Account acc = new Account(3,"d",10);
         acc.setAccountName("e");
         Assert.assertEquals("e",acc.getAccountName());
+    }
+    @Test
+    public void AccDbGetTest(){
+        AccountDatabase db = new AccountDatabase();
+        Assert.assertEquals(null,db.getAccount(4));
     }
 }
