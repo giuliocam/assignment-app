@@ -38,12 +38,12 @@ public class Transaction {
             checkB = b.getTransactionOccured();
             if (checkA == true)  { //transaction has occured before
                 aDate = sdfDate.parse(a.getLastTransaction());
-                secondsA = (aDate.getTime()- now.getTime())/1000;
+                secondsA = (now.getTime()-aDate.getTime())/1000;
             }
             else secondsA = 16;
             if (checkB == true)  { //transaction has occured before
                 bDate = sdfDate.parse(b.getLastTransaction());
-                secondsB = (bDate.getTime()- now.getTime())/1000;
+                secondsB = (now.getTime()-bDate.getTime())/1000;
             }
             else secondsB =16;
         }catch(ParseException pe){
