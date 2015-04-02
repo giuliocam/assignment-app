@@ -62,6 +62,9 @@ public class AppTest {
 
     @Test
     public void balanceTest() {
+        aDB.addAccount(test);
+        aDB.addAccount(b);
+
         Assert.assertEquals(false,tm.processTransaction(1, 2, 2000));
     }
     @Test
@@ -71,12 +74,18 @@ public class AppTest {
 
     @Test
     public void transactionIntervalTest1(){
+        aDB.addAccount(test);
+        aDB.addAccount(b);
+
         boolean transaction = tm.processTransaction(1,2,10);
         Assert.assertEquals(false, tm.processTransaction(2,1,10));
 
     }
     @Test
     public void transactionIntervalTest2(){
+        aDB.addAccount(test);
+        aDB.addAccount(b);
+
         boolean transaction = tm.processTransaction(1,2,500);
         try{
             Thread.sleep(16000);
