@@ -64,6 +64,10 @@ public class AppTest {
     public void balanceTest() {
         Assert.assertEquals(false,tm.processTransaction(1, 2, 2000));
     }
+    @Test
+    public void balanceTest2() {
+        Assert.assertEquals(true,tm.processTransaction(1, 2, 20));
+    }
 
     @Test
     public void transactionIntervalTest1(){
