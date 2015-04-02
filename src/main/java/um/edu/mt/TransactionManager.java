@@ -11,7 +11,9 @@ public class TransactionManager {
     public boolean processTransaction(int src, int dst, int amount) {
         Transaction t = new Transaction(db, src, dst, amount);
 
-        return t.process();
+        boolean check = t.process();
+        if (check){numTransactionsProcessed++;}
+        return check;
     }
 
 }
