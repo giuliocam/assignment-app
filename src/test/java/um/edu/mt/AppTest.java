@@ -98,7 +98,7 @@ public class AppTest {
     }
 
     @Test
-    public void AccConstGetTest(){
+    public void AccGetTest(){
         Account acc = new Account(3,"d",10);
         Assert.assertEquals("d",acc.getAccountName());
     }
