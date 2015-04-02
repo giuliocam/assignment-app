@@ -25,7 +25,7 @@ public class AppTest {
     public void adjustBalanceTest(){
         long originalBalance = test.getAccountBalance();
         test.adjustBalance(-1);
-        Assert.assertEquals(originalBalance-1,test.getAccountBalance());
+        Assert.assertEquals(originalBalance - 1, test.getAccountBalance());
 
     }
 
@@ -97,4 +97,15 @@ public class AppTest {
         Assert.assertEquals(true,tm.processTransaction(2,1,500));
     }
 
+    @Test
+    public void AccConstGetTest(){
+        Account acc = new Account(3,"d",10);
+        Assert.assertEquals("d",acc.getAccountName());
+    }
+    @Test
+    public void AccSetTest(){
+        Account acc = new Account(3,"d",10);
+        acc.setAccountName("e");
+        Assert.assertEquals("e",acc.getAccountName());
+    }
 }
