@@ -69,6 +69,9 @@ public class AppTest {
     }
     @Test
     public void balanceTest2() {
+        aDB.addAccount(test);
+        aDB.addAccount(b);
+        
         Assert.assertEquals(true,tm.processTransaction(1, 2, 20));
     }
 
