@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 public class Account {
-    private String lastTransaction;
+    private long lastTransaction;
     private int accountNumber;
     private String accountName;
     private long accountBalance;
@@ -27,9 +27,9 @@ public class Account {
         return accountBalance;
     }
 
-    public String getLastTransaction(){ return lastTransaction;}
+    public long getLastTransaction(){ return lastTransaction;}
 
-    public void setLastTransaction(String lt){this.lastTransaction = lt;}
+    public void setLastTransaction(long lt){this.lastTransaction = lt;}
 
     public boolean getTransactionOccured(){return transactionOccured;}
 
