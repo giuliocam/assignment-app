@@ -4,12 +4,17 @@ import org.junit.Before;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class AppTest {
+
+    ArrayList<Transaction> transactions;
 
     AccountDatabase aDB;
     TransactionManager tm;
 
     Account test, b, c,d;
+
     @Before
     public void init() {
         aDB = new AccountDatabase();
@@ -18,6 +23,8 @@ public class AppTest {
         b = new Account(2, "xyz", 2000);
         c = new Account(1, "c", 5);
         d = new Account(4, "d", 50);
+
+        transactions = new ArrayList<Transaction>();
     }
 
 
@@ -132,5 +139,6 @@ public class AppTest {
         AccountDatabase db = new AccountDatabase();
         Assert.assertEquals(null,db.getAccount(4));
     }
+
 
 }
