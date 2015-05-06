@@ -139,6 +139,18 @@ public class AppTest {
         AccountDatabase db = new AccountDatabase();
         Assert.assertEquals(null,db.getAccount(4));
     }
+    @Test
+    public void CreateSimpleCompoundTransaction(){
+        AccountDatabase db = new AccountDatabase();
+        db.addAccount(test);
+        db.addAccount(b);
+        Transaction first = new Transaction(db, 1,2 , 10);
+        Transaction second = new Transaction(db, 2,1 , 10);
+        transactions.add(first);
+        transactions.add(second);
+        CompoundTransaction ct = new CompoundTransaction(transactions);
+        Assert.assertEquals(ct, ct.getCompoundTransaction() );
+    }
 
 
 }

@@ -46,4 +46,5 @@ public class Account {
         accountBalance = amount;
         transactionOccured = false;
     }
+
 }
