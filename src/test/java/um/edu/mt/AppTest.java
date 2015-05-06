@@ -152,6 +152,5 @@ public class AppTest {
         Assert.assertEquals(ct, ct.getCompoundTransaction() );
     }
 
-
 }
 
