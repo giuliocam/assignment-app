@@ -172,6 +172,7 @@ public class AppTest {
         transactions2.add(lct);
         CompoundTransaction ct = new CompoundTransaction(transactions2);
         Assert.assertEquals(ct, ct.getCompoundTransaction() );
+
     }
 }
 
