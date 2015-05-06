@@ -1,6 +1,6 @@
 package um.edu.mt;
 
-public class Transaction {
+public class Transaction { //Atomic Transaction
 
     AccountDatabase db;
     int sourceAccountNumber;

@@ -13,7 +13,7 @@ public class AppTest {
     AccountDatabase aDB;
     TransactionManager tm;
 
-    Account test, b, c,d;
+    Account test, b, c,d,e;
 
     @Before
     public void init() {
@@ -23,7 +23,7 @@ public class AppTest {
         b = new Account(2, "xyz", 2000);
         c = new Account(1, "c", 5);
         d = new Account(4, "d", 50);
-
+        e = new Account(3 , "e",100);
         transactions = new ArrayList<Transaction>();
     }
 
@@ -151,6 +151,21 @@ public class AppTest {
         CompoundTransaction ct = new CompoundTransaction(transactions);
         Assert.assertEquals(ct, ct.getCompoundTransaction() );
     }
+    @Test
+    public void processCompoundTransaction(){
+        aDB.addAccount(test);
+        aDB.addAccount(b);
+        aDB.addAccount(d);
+        aDB.addAccount(e);
+        Transaction t1 = new Transaction(aDB,1,2,100);
+        Transaction t2 = new Transaction(aDB,3,4,50);
+        transactions.add(t1);
+        transactions.add(t2);
+        CompoundTransaction cT = new CompoundTransaction(transactions);
+        Assert.assertEquals(true,tm.processTransaction(cT));
+    }
+
+
 
 
 }
