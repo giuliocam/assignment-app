@@ -7,6 +7,10 @@ public class Transaction {
     int destinationAccountNumber;
     long amount;
 
+    public Transaction() {
+
+    }
+
     public Transaction(AccountDatabase db, int src, int dst, long amount) {
         this.db = db;
         sourceAccountNumber = src;
@@ -26,11 +30,11 @@ public class Transaction {
 
         checkA = a.getTransactionOccured();
         checkB = b.getTransactionOccured();
-        if (checkA == true)  { //transaction has occured before
+        if (checkA)  { //transaction has occured before
             milliSecondsA = (now- a.getLastTransaction());
         }
         else milliSecondsA = 16;
-        if (checkB == true)  { //transaction has occured before
+        if (checkB)  { //transaction has occured before
             milliSecondsB = (now-b.getLastTransaction());
         }
         else milliSecondsB =16;
