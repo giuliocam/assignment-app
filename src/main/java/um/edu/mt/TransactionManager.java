@@ -15,6 +15,12 @@ public class TransactionManager {
         if (check){numTransactionsProcessed++;}
         return check;
     }
+    public boolean processTransaction(Transaction t) {
+        return false;
+    }
+    public boolean processTransaction(CompoundTransaction t) {
+        return false;
+    }
 
 
 }
