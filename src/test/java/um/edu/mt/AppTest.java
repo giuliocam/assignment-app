@@ -151,6 +151,28 @@ public class AppTest {
         CompoundTransaction ct = new CompoundTransaction(transactions);
         Assert.assertEquals(ct, ct.getCompoundTransaction() );
     }
+    @Test
+    public void CreateComplexCompoundTransaction(){
+        AccountDatabase db = new AccountDatabase();
+        db.addAccount(test);
+        db.addAccount(b);
+
+        Transaction first = new Transaction(db, 1,2 , 10);
+        Transaction second = new Transaction(db, 2,1 , 10);
+
+        transactions.add(first);
+        transactions.add(second);
+        CompoundTransaction lct = new CompoundTransaction(transactions);
+
+        ArrayList<Transaction> transactions2 = new ArrayList<Transaction>();
+        Transaction third = new Transaction(db, 1,2 , 100);
+        Transaction forth = new Transaction(db, 2,1 , 20);
+        transactions2.add(third);
+        transactions2.add(forth);
+        transactions2.add(lct);
+        CompoundTransaction ct = new CompoundTransaction(transactions2);
+        Assert.assertEquals(ct, ct.getCompoundTransaction() );
+    }
 
 
 }
