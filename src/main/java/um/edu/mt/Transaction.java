@@ -2,10 +2,11 @@ package um.edu.mt;
 
 public class Transaction {
 
-    AccountDatabase db;
-    int sourceAccountNumber;
-    int destinationAccountNumber;
-    long amount;
+    private AccountDatabase db;
+    private int sourceAccountNumber;
+    private int destinationAccountNumber;
+    private long amount;
+    private String note = "";
 
     public Transaction() {
 
@@ -16,6 +17,11 @@ public class Transaction {
         sourceAccountNumber = src;
         destinationAccountNumber = dst;
         this.amount = amount;
+    }
+
+    public Transaction(AccountDatabase db, int src, int dst, long amount, String desc) {
+        this(db, src, dst, amount);
+        note = desc;
     }
 
     public boolean process() {
@@ -51,4 +57,9 @@ public class Transaction {
         }
         return true;
     }
+
+    public String getInfo() {
+        return sourceAccountNumber + "->" + destinationAccountNumber + " " + note;
+    }
+
 }
