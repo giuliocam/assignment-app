@@ -81,6 +81,11 @@ public class AppTest {
         Assert.assertEquals(true,tm.processTransaction(1, 2, 20));
     }
     @Test
+    public void transactionTest(){
+        aDB.addAccount(b);
+        Assert.assertEquals(false, tm.processTransaction(2, 2, 20));
+    }
+    @Test
     public void transactionIntervalTest2(){
         aDB.addAccount(test);
         aDB.addAccount(b);
