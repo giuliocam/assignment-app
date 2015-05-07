@@ -72,7 +72,6 @@ public class AppTest {
     public void balanceTest() {
         aDB.addAccount(test);
         aDB.addAccount(b);
-
         Assert.assertEquals(false,tm.processTransaction(1, 2, 2000));
     }
     @Test
@@ -81,7 +80,7 @@ public class AppTest {
         aDB.addAccount(b);
         Assert.assertEquals(true,tm.processTransaction(1, 2, 20));
     }
-
+    /*
     @Test
     public void transactionIntervalTest1(){
         aDB.addAccount(test);
@@ -91,7 +90,8 @@ public class AppTest {
         Assert.assertEquals(false, tm.processTransaction(2,1,10));
 
     }
-    @Test
+    */
+    @Test //checks that a transaction occurs if more than 15 seconds have passed between 2 transactions using the same accounts
     public void transactionIntervalTest2(){
         aDB.addAccount(test);
         aDB.addAccount(b);
@@ -104,23 +104,13 @@ public class AppTest {
         }
         Assert.assertEquals(true,tm.processTransaction(2,1,500));
     }
-    @Test
+    @Test //account does not exist in the account database, therefore transaction cannot occur
     public void transactionIntervalTest3(){
         aDB.addAccount(test);
         aDB.addAccount(b);
-
         Assert.assertEquals(false, tm.processTransaction(3,1,10));
-
     }
 
-    @Test
-    public void transactionIntervalTest4(){
-        aDB.addAccount(test);
-        aDB.addAccount(b);
-        aDB.addAccount(d);
-        tm.processTransaction(1, 4, 10);
-        Assert.assertEquals(false, tm.processTransaction(2, 1, 10));
-    }
 
     @Test
     public void AccGetTest(){
@@ -139,7 +129,7 @@ public class AppTest {
         AccountDatabase db = new AccountDatabase();
         Assert.assertEquals(null,db.getAccount(4));
     }
-    @Test
+    @Test //create a compound transaction containing 2 transactions and check whether the compound transaction is created correctly
     public void CreateSimpleCompoundTransaction(){
         AccountDatabase db = new AccountDatabase();
         db.addAccount(test);
@@ -149,7 +139,7 @@ public class AppTest {
         transactions.add(first);
         transactions.add(second);
         CompoundTransaction ct = new CompoundTransaction(transactions);
-        Assert.assertSame(transactions, ct.getCompoundTransaction() );
+        Assert.assertSame(transactions, ct.getCompoundTransaction());
     }
     @Test
     public void CreateComplexCompoundTransaction(){
@@ -171,10 +161,10 @@ public class AppTest {
         transactions2.add(forth);
         transactions2.add(lct);
         CompoundTransaction ct = new CompoundTransaction(transactions2);
-        Assert.assertSame(transactions2, ct.getCompoundTransaction() );
+        Assert.assertSame(transactions2, ct.getCompoundTransaction());
     }
 
-    @Test
+    @Test//create a compound transaction containing 2 transactions and process these transactions(4 different accounts used)
     public void processCompoundTransaction(){
         aDB.addAccount(test);
         aDB.addAccount(b);
@@ -185,7 +175,20 @@ public class AppTest {
         transactions.add(t1);
         transactions.add(t2);
         CompoundTransaction cT = new CompoundTransaction(transactions);
+        Assert.assertEquals(true, tm.processTransaction(cT));
+    }
+    @Test//create a compound transaction containing 2 transactions and process these transactions(3 different accounts used)
+    public void processCompoundTransaction2(){
+        aDB.addAccount(test);
+        aDB.addAccount(b);
+        aDB.addAccount(d);
+        Transaction t1 = new Transaction(aDB,1,2,100);
+        Transaction t2 = new Transaction(aDB,3,1,50);
+        transactions.add(t1);
+        transactions.add(t2);
+        CompoundTransaction cT = new CompoundTransaction(transactions);
         Assert.assertEquals(true,tm.processTransaction(cT));
     }
+
 }
 
