@@ -48,6 +48,8 @@ public class CompoundTransaction extends Transaction{
         //assuming commission is atomic
         Transaction commission = new Transaction(db, csrc, cdest, (long)(comm*0.01*total));
 
+        t = new ArrayList<Transaction>();
+
         t.add(deposit);
         t.add(main);
         t.add(commission);
