@@ -183,7 +183,7 @@ public class AppTest {
         aDB.addAccount(b);
         aDB.addAccount(d);
         Transaction t1 = new Transaction(aDB,1,2,100);
-        Transaction t2 = new Transaction(aDB,3,1, 50);
+        Transaction t2 = new Transaction(aDB,4,1, 50);
         transactions.add(t1);
         transactions.add(t2);
         CompoundTransaction cT = new CompoundTransaction(transactions);
