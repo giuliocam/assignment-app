@@ -14,7 +14,7 @@ public class CompoundTransaction extends Transaction{
         return t;
     }
 
-
+/* Repeated Code in TransactionManager
     public boolean process() {
 
         for(Transaction x : t) {
@@ -26,4 +26,5 @@ public class CompoundTransaction extends Transaction{
 
         return true;
     }
+    */
 }
