@@ -17,9 +17,9 @@ public class CompoundTransaction extends Transaction{
 
     public boolean setPreset(String risk, int ddest, int damount, ArrayList<Integer> dests, ArrayList<Long> amounts, AccountDatabase db) {
 
-        int dsrc = 0, msrc = 0, csrc = 0, cdest = 0;
+        int dsrc , msrc , csrc , cdest ;
         int total = 0;
-        int comm = 0;
+        int comm ;
 
         if(risk.equalsIgnoreCase("high")) {
             dsrc = 3123;
@@ -91,6 +91,7 @@ public class CompoundTransaction extends Transaction{
 
         return a;
     }
+
     public ArrayList<Transaction> sortList(int src){
         ArrayList<Transaction> nt = new ArrayList<Transaction>();
         for (Transaction n: t){
