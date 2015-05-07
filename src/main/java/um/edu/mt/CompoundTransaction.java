@@ -28,4 +28,10 @@ public class CompoundTransaction extends Transaction{
 
         return true;
     }
+
+    public void setRisk(String s) {
+        for(Transaction x : t) {
+            x.setRisk(s);
+        }
+    }
 }

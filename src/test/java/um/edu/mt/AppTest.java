@@ -216,7 +216,8 @@ public class AppTest {
         CompoundTransaction ct3 = new CompoundTransaction(transactions3);
 
 
-        ct.setRisk("Low");
+        ct3.setRisk("Low");
+
 
         iterateList(ct3.getCompoundTransaction());
     }
