@@ -166,7 +166,7 @@ public class AppTest {
         transactions2.add(forth);
         transactions2.add(lct);
         CompoundTransaction ct = new CompoundTransaction(transactions2);
-        Assert.assertSame(transactions2, ct.getCompoundTransaction() );
+        Assert.assertSame(transactions2, ct.getCompoundTransaction());
     }
 
     @Test//create a compound transaction containing 2 transactions and process these transactions(4 different accounts used)
@@ -193,7 +193,7 @@ public class AppTest {
         transactions.add(t1);
         transactions.add(t2);
         CompoundTransaction cT = new CompoundTransaction(transactions);
-        Assert.assertEquals(true,tm.processTransaction(cT));
+        Assert.assertEquals(true, tm.processTransaction(cT));
     }
 
     @Test
@@ -254,7 +254,11 @@ public class AppTest {
 
         iterateList(ct3.getCompoundTransaction());
     }
-
+    @Test
+    public void EmptyTransactionTest(){
+        CompoundTransaction ct = new CompoundTransaction(transactions);
+        Assert.assertFalse(tm.processTransaction(ct));
+    }
     public void iterateList(ArrayList<Transaction> list) {
         for(Transaction t : list) {
 
