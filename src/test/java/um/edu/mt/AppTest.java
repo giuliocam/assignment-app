@@ -83,6 +83,15 @@ public class AppTest {
     }
 
     @Test
+    public void transactionIntervalTest1(){
+        aDB.addAccount(test);
+        aDB.addAccount(b);
+
+        boolean transaction = tm.processTransaction(1,2,10);
+        Assert.assertEquals(false, tm.processTransaction(2,1,10));
+
+    }
+    @Test
     public void transactionIntervalTest2(){
         aDB.addAccount(test);
         aDB.addAccount(b);
@@ -103,7 +112,7 @@ public class AppTest {
         Assert.assertEquals(false, tm.processTransaction(3, 1, 10));
 
     }
-/*
+
     @Test
     public void transactionIntervalTest4(){
         aDB.addAccount(test);
@@ -111,7 +120,7 @@ public class AppTest {
         aDB.addAccount(d);
         tm.processTransaction(1, 4, 10);
         Assert.assertEquals(false, tm.processTransaction(2, 1, 10));
-    }*/
+    }
 
     @Test
     public void AccGetTest(){
@@ -140,7 +149,7 @@ public class AppTest {
         transactions.add(first);
         transactions.add(second);
         CompoundTransaction ct = new CompoundTransaction(transactions);
-        Assert.assertSame(transactions, ct.getCompoundTransaction());
+        Assert.assertSame(transactions, ct.getCompoundTransaction() );
     }
     @Test
     public void CreateComplexCompoundTransaction(){
@@ -165,7 +174,7 @@ public class AppTest {
         Assert.assertSame(transactions2, ct.getCompoundTransaction() );
     }
 
-    @Test //create a compound transaction containing 2 transactions and process these transactions(4 different accounts used)
+    @Test
     public void processCompoundTransaction(){
         aDB.addAccount(test);
         aDB.addAccount(b);
@@ -173,18 +182,6 @@ public class AppTest {
         aDB.addAccount(e);
         Transaction t1 = new Transaction(aDB,1,2,100);
         Transaction t2 = new Transaction(aDB,3,4,50);
-        transactions.add(t1);
-        transactions.add(t2);
-        CompoundTransaction cT = new CompoundTransaction(transactions);
-        Assert.assertEquals(true, tm.processTransaction(cT));
-    }
-    @Test //create a compound transaction containing 2 transactions and process these transactions(3 different accounts used)
-    public void processCompoundTransaction2(){
-        aDB.addAccount(test);
-        aDB.addAccount(b);
-        aDB.addAccount(d);
-        Transaction t1 = new Transaction(aDB,1,2,100);
-        Transaction t2 = new Transaction(aDB,1,4,50);
         transactions.add(t1);
         transactions.add(t2);
         CompoundTransaction cT = new CompoundTransaction(transactions);
