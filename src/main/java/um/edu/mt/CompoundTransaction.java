@@ -15,6 +15,7 @@ public class CompoundTransaction extends Transaction{
     }
 
     public boolean process() {
+        if(t.isEmpty()) return false;
         try {
             for (Transaction x : t) {
                 if (!x.process()) {
