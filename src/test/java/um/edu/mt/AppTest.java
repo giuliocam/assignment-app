@@ -197,7 +197,7 @@ public class AppTest {
         db.addAccount(b);
 
         Transaction first = new Transaction(db, 1,2 , 10,"First");
-        Transaction second = new Transaction(db, 2,1 , 10,"Second");
+        Transaction second = new Transaction(db, 2,1 , 1000000,"Second");
 
         transactions.add(first);
         transactions.add(second);
