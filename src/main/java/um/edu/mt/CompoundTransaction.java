@@ -84,7 +84,16 @@ public class CompoundTransaction extends Transaction{
         return null;
     }
     public ArrayList<Transaction> sortList(int src){
-        return null;
+        ArrayList<Transaction> t = new ArrayList<Transaction>();
+        for (Transaction n: t){
+            if (n instanceof CompoundTransaction){
+                ArrayList<Transaction> temp = sortList(src);
+                t.addAll(temp);
+            }else {
+                if(n.getSourceAccount() == src) t.add(n);
+            }
+        }
+        return t;
     }
     public void setRisk(String s) {
         for(Transaction x : t) {

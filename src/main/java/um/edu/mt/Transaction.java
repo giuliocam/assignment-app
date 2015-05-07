@@ -33,7 +33,7 @@ public class Transaction { //Atomic Transaction
         long now = System.currentTimeMillis();
 
         boolean checkA,checkB;
-        long milliSecondsA = 0,milliSecondsB = 0;
+        long milliSecondsA ,milliSecondsB ;
 
         checkA = a.getTransactionOccurred();
         checkB = b.getTransactionOccurred();
@@ -77,7 +77,9 @@ public class Transaction { //Atomic Transaction
     public void setRisk(String s) {
         risk = s;
     }
-
+    public int getSourceAccount() {
+        return sourceAccountNumber;
+    }
     public String getRisk() {
         return risk;
     }
