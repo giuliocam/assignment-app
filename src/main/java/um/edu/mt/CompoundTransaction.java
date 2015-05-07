@@ -15,8 +15,9 @@ public class CompoundTransaction extends Transaction{
     }
 
     public boolean process() {
-        if(t.isEmpty()) return false;
+
         try {
+            if(t.isEmpty()) throw new Exception("No Transactions Found");
             for (Transaction x : t) {
                 if (!x.process()) {
                     throw new Exception("Error in transaction " + x.getInfo());
