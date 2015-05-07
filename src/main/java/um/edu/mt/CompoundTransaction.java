@@ -21,7 +21,7 @@ public class CompoundTransaction extends Transaction{
         int total = 0;
         int comm = 0;
 
-        if(risk.equalsIgnoreCase("low")) {
+        if(risk.equalsIgnoreCase("high")) {
             dsrc = 3123;
             msrc = 3143;
             csrc = 6565;
@@ -29,13 +29,14 @@ public class CompoundTransaction extends Transaction{
             comm = 5;
         }
 
-        if(risk.equalsIgnoreCase("high")) {
+        else if(risk.equalsIgnoreCase("low")) {
             dsrc = 8665;
             msrc = 3133;
             csrc = 6588;
-            cdest = 5555;
+            cdest = 4445;
             comm = 10;
         }
+        else return false;
 
         Transaction deposit = new Transaction(db, dsrc, ddest, damount);
 
@@ -56,7 +57,6 @@ public class CompoundTransaction extends Transaction{
         t.add(commission);
 
         setRisk(risk);
-
         return true;
     }
 

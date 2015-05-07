@@ -99,7 +99,7 @@ public class AppTest {
         }catch(InterruptedException ex){
             Thread.currentThread().interrupt();
         }
-        Assert.assertEquals(true,tm.processTransaction(2,1,500));
+        Assert.assertEquals(true,tm.processTransaction(2, 1, 500));
     }
     @Test //account does not exist in the account database, therefore transaction cannot occur
     public void transactionIntervalTest3(){
@@ -256,26 +256,163 @@ public class AppTest {
 
         iterateList(ct3.getCompoundTransaction());
     }
+    @Test //test for low risk transactions
+    public void presetCompound1(){
+
+        //source accounts created and added to db
+        Account s1 = new Account(8665, "s1", 2000000);
+        Account s4 = new Account(3133, "s4", 50000);
+        Account s6 = new Account(6588, "s6", 60000);
+        aDB2.addAccount(s1);
+        aDB2.addAccount(s4);
+        aDB2.addAccount(s6);
+
+        //create and add destination accounts
+        Account d1 = new Account(4445, "d1", 20000);
+        aDB2.addAccount(d1);
+        aDB2.addAccount(b);
+        aDB2.addAccount(c);
+        aDB2.addAccount(d);
+
+        ArrayList<Integer> dest = new ArrayList<Integer>();
+        dest.add(2);
+        dest.add(1);
+        ArrayList<Long> amounts = new ArrayList<Long>();
+        amounts.add((long)1000);
+        amounts.add((long) 500);
+
+
+        CompoundTransaction ct = new CompoundTransaction();
+        ct.setPreset("low", 4, 500, dest, amounts, aDB2);
+        Assert.assertTrue(tm.processTransaction(ct));
+
+    }
     @Test
-    public void preset(){
+    public void presetCompound2(){ //high risk
+
+        //source accounts created and added to db
+        Account s1 = new Account(3123, "s1", 20000);
+        Account s3 = new Account(3143, "s3", 200000);
+        Account s5 = new Account(6565, "s5", 80000);
+        aDB2.addAccount(s1);
+        aDB2.addAccount(s3);
+        aDB2.addAccount(s5);
+
+        //create and add destination accounts
+        Account d1 = new Account(4444, "d1", 20000);
+        aDB2.addAccount(d1);
+        aDB2.addAccount(c);
+        aDB2.addAccount(b);
+        ArrayList<Integer> dest = new ArrayList<Integer>();
+
+        dest.add(2);
+
+        ArrayList<Long> amounts = new ArrayList<Long>();
+        amounts.add((long)1000);
+        amounts.add((long)500);
+
+        CompoundTransaction ct = new CompoundTransaction();
+        ct.setPreset("high",2,500,dest,amounts,aDB2);
+        Assert.assertTrue(tm.processTransaction(ct));
+
+    }
+    @Test
+    public void presetCompound3(){ //high risk and 1 source account missing
         //list of transactions, risk , dests (to create),
 
         //source accounts created and added to db
         Account s1 = new Account(3123, "s1", 20000);
-        //Account s2 = new Account(8665, "s2", 20000);
         Account s3 = new Account(3143, "s3", 200000);
-        Account s4 = new Account(3133, "s4", 50000);
-        Account s5 = new Account(6565, "s5", 80000);
-        Account s6 = new Account(6588, "s6", 60000);
         aDB2.addAccount(s1);
-        //aDB2.addAccount(s2);
         aDB2.addAccount(s3);
-        aDB2.addAccount(s4);
-        aDB2.addAccount(s5);
-        aDB2.addAccount(s6);
 
         //create and add destination accounts
         Account d1 = new Account(4444, "d1", 20000);
+        aDB2.addAccount(d1);
+        aDB2.addAccount(c);
+        aDB2.addAccount(b);
+
+        ArrayList<Integer> dest = new ArrayList<Integer>();
+        dest.add(2);
+
+        ArrayList<Long> amounts = new ArrayList<Long>();
+        amounts.add((long)1000);
+        amounts.add((long)500);
+
+        CompoundTransaction ct = new CompoundTransaction();
+        ct.setPreset("high", 2, 500, dest, amounts, aDB2);
+        Assert.assertFalse(tm.processTransaction(ct));
+
+    }
+    @Test
+    public void presetCompound4(){ //high risk and 1 dest account missing
+        //list of transactions, risk , dests (to create),
+
+        //source accounts created and added to db
+        Account s1 = new Account(3123, "s1", 20000);
+        Account s3 = new Account(3143, "s3", 200000);
+        Account s5 = new Account(6560, "s5", 80000);
+        aDB2.addAccount(s1);
+        aDB2.addAccount(s3);
+        aDB2.addAccount(s5);
+
+        //create and add destination accounts
+        Account d1 = new Account(4444, "d1", 20000);
+        aDB2.addAccount(d1);
+
+        ArrayList<Integer> dest = new ArrayList<Integer>();
+        dest.add(2);
+
+        ArrayList<Long> amounts = new ArrayList<Long>();
+        amounts.add((long)1000);
+        amounts.add((long)500);
+
+        CompoundTransaction ct = new CompoundTransaction();
+        ct.setPreset("high", 2, 500, dest, amounts, aDB2);
+        Assert.assertFalse(tm.processTransaction(ct));
+
+    }
+    @Test //test for low risk transactions and 1 source missing
+    public void presetCompound5(){
+
+        //source accounts created and added to db
+        Account s1 = new Account(8665, "s1", 2000000);
+        Account s4 = new Account(3133, "s4", 50000);
+        aDB2.addAccount(s1);
+        aDB2.addAccount(s4);
+
+        //create and add destination accounts
+        Account d1 = new Account(4445, "d1", 20000);
+        aDB2.addAccount(d1);
+        aDB2.addAccount(b);
+        aDB2.addAccount(c);
+        aDB2.addAccount(d);
+
+        ArrayList<Integer> dest = new ArrayList<Integer>();
+        dest.add(2);
+        dest.add(1);
+        ArrayList<Long> amounts = new ArrayList<Long>();
+        amounts.add((long)1000);
+        amounts.add((long) 500);
+
+
+        CompoundTransaction ct = new CompoundTransaction();
+        ct.setPreset("low", 4, 500, dest, amounts, aDB2);
+        Assert.assertFalse(tm.processTransaction(ct));
+    }
+    @Test //test for low risk transactions dest acc missing
+    public void presetCompound6(){
+
+        //source accounts created and added to db
+        Account s1 = new Account(8665, "s1", 2000000);
+        Account s4 = new Account(3133, "s4", 50000);
+        Account s6 = new Account(6588, "s6", 60000);
+        aDB2.addAccount(s1);
+        aDB2.addAccount(s4);
+        aDB2.addAccount(s6);
+
+        //create and add destination accounts
+        Account d1 = new Account(4445, "d1", 20000);
         aDB2.addAccount(d1);
         aDB2.addAccount(b);
         aDB2.addAccount(c);
@@ -285,14 +422,48 @@ public class AppTest {
         dest.add(1);
         ArrayList<Long> amounts = new ArrayList<Long>();
         amounts.add((long)1000);
-        amounts.add((long)500);
-        //amounts.add((long)20);
+        amounts.add((long) 500);
 
 
         CompoundTransaction ct = new CompoundTransaction();
-        Assert.assertTrue(ct.setPreset("low",4,500,dest,amounts,aDB2));
+        ct.setPreset("low", 4, 500, dest, amounts, aDB2);
+        Assert.assertFalse(tm.processTransaction(ct));
 
     }
+    @Test //test for incorrect entry for low/high risk
+    public void presetCompound7(){
+
+        //source accounts created and added to db
+        Account s1 = new Account(8665, "s1", 2000000);
+        Account s4 = new Account(3133, "s4", 50000);
+        Account s6 = new Account(6588, "s6", 60000);
+        aDB2.addAccount(s1);
+        aDB2.addAccount(s4);
+        aDB2.addAccount(s6);
+
+        //create and add destination accounts
+        Account d1 = new Account(4445, "d1", 20000);
+        aDB2.addAccount(d1);
+        aDB2.addAccount(b);
+        aDB2.addAccount(c);
+        aDB2.addAccount(d);
+
+        ArrayList<Integer> dest = new ArrayList<Integer>();
+        dest.add(2);
+        dest.add(1);
+        ArrayList<Long> amounts = new ArrayList<Long>();
+        amounts.add((long)1000);
+        amounts.add((long) 500);
+
+
+        CompoundTransaction ct = new CompoundTransaction();
+        Assert.assertFalse(ct.setPreset("lo", 4, 500, dest, amounts, aDB2));
+
+    }
+
+
+
+
 
     @Test
     public void EmptyTransactionTest(){
