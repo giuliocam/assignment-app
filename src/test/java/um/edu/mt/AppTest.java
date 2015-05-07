@@ -289,7 +289,8 @@ public class AppTest {
         //amounts.add((long)20);
 
 
-        CompoundTransaction ct = new CompoundTransaction("low",4,500,dest,amounts,aDB2);
+        CompoundTransaction ct = new CompoundTransaction();
+        Assert.assertTrue(ct.setPreset("low",4,500,dest,amounts,aDB2));
 
     }
 
