@@ -37,15 +37,26 @@ public class Transaction { //Atomic Transaction
         checkA = a.getTransactionOccured();
         checkB = b.getTransactionOccured();
         if (checkA)  { //transaction has occured before
-            milliSecondsA = (now- a.getLastTransaction());
+            milliSecondsA = (now-a.getLastTransaction());
         }
-        else milliSecondsA = 16;
+        else milliSecondsA = 16000;
         if (checkB)  { //transaction has occured before
             milliSecondsB = (now-b.getLastTransaction());
         }
-        else milliSecondsB =16;
+        else milliSecondsB = 16000;
 
-        if (milliSecondsA < 15 || milliSecondsB < 15) return false;
+        try{
+            if (milliSecondsA < 15000){//check if 15 seconds passed, if not wait, for the amount of seconds that remain
+                Thread.sleep(15000-(milliSecondsA));
+            }
+            if(milliSecondsB < 15000){
+                Thread.sleep(15000-(milliSecondsB));
+            }
+        }catch(InterruptedException ex){
+            Thread.currentThread().interrupt();
+            return false;
+        }
+
         if (a.getAccountBalance() < amount) return false;
         else {
             a.adjustBalance(-amount);
