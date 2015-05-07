@@ -25,10 +25,7 @@ public class TransactionManager {
     public boolean processTransaction(CompoundTransaction t) {
         ArrayList<Transaction> nt = t.getCompoundTransaction();
         for (Transaction n:nt){
-            if (! processTransaction(n)) {
-                System.out.println("Error in transaction " + n.getInfo());
-                return false;
-            }
+            if (! processTransaction(n)) return false;
         }
         return true;
     }
