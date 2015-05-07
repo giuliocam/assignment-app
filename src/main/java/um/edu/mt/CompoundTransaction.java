@@ -1,6 +1,7 @@
 package um.edu.mt;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class CompoundTransaction extends Transaction{
 
@@ -81,7 +82,15 @@ public class CompoundTransaction extends Transaction{
         return true;
     }
     public ArrayList<Transaction> sortList(String type){
-        return null;
+        ArrayList<Transaction> a = iterateList();
+        TransactionComparator c = new TransactionComparator();
+
+        if(type.equalsIgnoreCase("dec")) a.sort(c.reversed());
+        if(type.equalsIgnoreCase("inc")) a.sort(c);
+
+        for(Transaction x : a) System.out.println(x.getAmount());
+
+        return a;
     }
     public ArrayList<Transaction> sortList(int src){
         ArrayList<Transaction> t = new ArrayList<Transaction>();
@@ -99,5 +108,29 @@ public class CompoundTransaction extends Transaction{
         for(Transaction x : t) {
             x.setRisk(s);
         }
+    }
+
+    public ArrayList<Transaction> iterateList() {
+        ArrayList<Transaction> a = new ArrayList<Transaction>();
+        for(Transaction x : t) {
+            if(x instanceof CompoundTransaction) {
+                a.addAll(((CompoundTransaction) x).iterateList());
+            } else {
+                a.add(x);
+
+            }
+        }
+        return a;
+    }
+
+    class TransactionComparator implements Comparator<Transaction> {
+        @Override
+        public int compare(Transaction a, Transaction b) {
+            long aamount = a.getAmount();
+            long bamount = b.getAmount();
+
+            return aamount < bamount ? -1 : bamount == aamount ? 0 : 1;
+        }
+
     }
 }
