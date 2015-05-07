@@ -298,6 +298,92 @@ public class AppTest {
         CompoundTransaction ct = new CompoundTransaction(transactions);
         Assert.assertFalse(tm.processTransaction(ct));
     }
+    @Test
+    public void GetAtomicDecValue(){
+        Transaction t1 = new Transaction(aDB,1,2,100);
+        Transaction t2 = new Transaction(aDB,3,4,50);
+        Transaction t3 = new Transaction(aDB,1,4,11);
+        Transaction t4 = new Transaction(aDB,4,3,1);
+        Transaction t5 = new Transaction(aDB,3,4,101);
+        Transaction t6 = new Transaction(aDB,3,1,20);
+        transactions.add(t1);
+        transactions.add(t2);
+        CompoundTransaction ct1 = new CompoundTransaction(transactions);
+        transactions = new ArrayList<Transaction>();
+        transactions.add(t3);
+        transactions.add(t4);
+        CompoundTransaction ct2= new CompoundTransaction(transactions);
+        transactions = new ArrayList<Transaction>();
+        transactions.add(ct1);
+        transactions.add(ct2);
+        transactions.add(t5);
+        transactions.add(t6);
+        CompoundTransaction ct3 = new CompoundTransaction(transactions);
+        ArrayList<Transaction> sortedlist = new ArrayList<Transaction>();
+        sortedlist.add(t5);
+        sortedlist.add(t1);
+        sortedlist.add(t2);
+        sortedlist.add(t6);
+        sortedlist.add(t3);
+        sortedlist.add(t4);
+        Assert.assertTrue(arrayEquals(sortedlist, ct3.sortList("Dec")));
+    }
+    @Test
+    public void GetAtomicIncValue(){
+        Transaction t1 = new Transaction(aDB,1,2,100);
+        Transaction t2 = new Transaction(aDB,3,4,50);
+        Transaction t3 = new Transaction(aDB,1,4,11);
+        Transaction t4 = new Transaction(aDB,4,3,1);
+        Transaction t5 = new Transaction(aDB,3,4,101);
+        Transaction t6 = new Transaction(aDB,3,1,20);
+        transactions.add(t1);
+        transactions.add(t2);
+        CompoundTransaction ct1 = new CompoundTransaction(transactions);
+        transactions = new ArrayList<Transaction>();
+        transactions.add(t3);
+        transactions.add(t4);
+        CompoundTransaction ct2= new CompoundTransaction(transactions);
+        transactions = new ArrayList<Transaction>();
+        transactions.add(ct1);
+        transactions.add(ct2);
+        transactions.add(t5);
+        transactions.add(t6);
+        CompoundTransaction ct3 = new CompoundTransaction(transactions);
+        ArrayList<Transaction> sortedlist = new ArrayList<Transaction>();
+        sortedlist.add(t4);
+        sortedlist.add(t3);
+        sortedlist.add(t6);
+        sortedlist.add(t2);
+        sortedlist.add(t1);
+        sortedlist.add(t5);
+        Assert.assertTrue(arrayEquals(sortedlist, ct3.sortList("Inc")));
+    }
+    @Test
+    public void GetAtomicSrcAccount(){
+        Transaction t1 = new Transaction(aDB,1,2,100);
+        Transaction t2 = new Transaction(aDB,3,4,50);
+        Transaction t3 = new Transaction(aDB,1,4,11);
+        Transaction t4 = new Transaction(aDB,4,3,1);
+        Transaction t5 = new Transaction(aDB,3,4,101);
+        Transaction t6 = new Transaction(aDB,3,1,20);
+        transactions.add(t1);
+        transactions.add(t2);
+        CompoundTransaction ct1 = new CompoundTransaction(transactions);
+        transactions = new ArrayList<Transaction>();
+        transactions.add(t3);
+        transactions.add(t4);
+        CompoundTransaction ct2= new CompoundTransaction(transactions);
+        transactions = new ArrayList<Transaction>();
+        transactions.add(ct1);
+        transactions.add(ct2);
+        transactions.add(t5);
+        transactions.add(t6);
+        CompoundTransaction ct3 = new CompoundTransaction(transactions);
+        ArrayList<Transaction> sortedlist = new ArrayList<Transaction>();
+        sortedlist.add(t1);
+        sortedlist.add(t3);
+        Assert.assertTrue(arrayEquals(sortedlist, ct3.sortList(1)));
+    }
     public void iterateList(ArrayList<Transaction> list) {
         for(Transaction t : list) {
 
@@ -306,6 +392,13 @@ public class AppTest {
             }
             Assert.assertEquals(true, t.getRisk().equalsIgnoreCase("Low"));
         }
+    }
+    public boolean arrayEquals(ArrayList<Transaction> sortedlist, ArrayList<Transaction> list){
+        if (sortedlist.size()!= list.size()) return false;
+        for(int i = 0; i < list.size();i++){
+            if(sortedlist.get(i)!= list.get(i))return false;
+        }
+        return true;
     }
 
 }

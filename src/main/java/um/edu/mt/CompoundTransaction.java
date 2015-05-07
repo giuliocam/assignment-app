@@ -78,7 +78,12 @@ public class CompoundTransaction extends Transaction{
 
         return true;
     }
-
+    public ArrayList<Transaction> sortList(String type){
+        return null;
+    }
+    public ArrayList<Transaction> sortList(int src){
+        return null;
+    }
     public void setRisk(String s) {
         for(Transaction x : t) {
             x.setRisk(s);
