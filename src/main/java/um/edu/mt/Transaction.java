@@ -29,7 +29,7 @@ public class Transaction { //Atomic Transaction
         Account a = db.getAccount(sourceAccountNumber);
         Account b = db.getAccount(destinationAccountNumber);
 
-        if (a == null || b == null) return false;
+        if (a == null || b == null|| sourceAccountNumber == destinationAccountNumber) return false;
         long now = System.currentTimeMillis();
 
         boolean checkA,checkB;
