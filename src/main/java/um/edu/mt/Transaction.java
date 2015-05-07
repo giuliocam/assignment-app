@@ -34,13 +34,13 @@ public class Transaction { //Atomic Transaction
         boolean checkA,checkB;
         long milliSecondsA = 0,milliSecondsB = 0;
 
-        checkA = a.getTransactionOccured();
-        checkB = b.getTransactionOccured();
-        if (checkA)  { //transaction has occured before
+        checkA = a.getTransactionOccurred();
+        checkB = b.getTransactionOccurred();
+        if (checkA)  { //transaction has occurred before
             milliSecondsA = (now-a.getLastTransaction());
         }
         else milliSecondsA = 16000;
-        if (checkB)  { //transaction has occured before
+        if (checkB)  { //transaction has occurred before
             milliSecondsB = (now-b.getLastTransaction());
         }
         else milliSecondsB = 16000;
@@ -63,8 +63,8 @@ public class Transaction { //Atomic Transaction
             b.adjustBalance(amount);
             a.setLastTransaction(now);
             b.setLastTransaction(now);
-            a.setTransactionOccured(true);
-            b.setTransactionOccured(true);
+            a.setTransactionOccurred(true);
+            b.setTransactionOccurred(true);
         }
         return true;
     }

@@ -1,15 +1,11 @@
 package um.edu.mt;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-
 public class Account {
     private long lastTransaction;
     private int accountNumber;
     private String accountName;
     private long accountBalance;
-    private boolean transactionOccured;
+    private boolean transactionOccurred;
 
     public int getAccountNumber() {
         return accountNumber;
@@ -31,9 +27,9 @@ public class Account {
 
     public void setLastTransaction(long lt){this.lastTransaction = lt;}
 
-    public boolean getTransactionOccured(){return transactionOccured;}
+    public boolean getTransactionOccurred(){return transactionOccurred;}
 
-    public void setTransactionOccured(boolean t){transactionOccured = t;}
+    public void setTransactionOccurred(boolean t){transactionOccurred = t;}
 
     public boolean adjustBalance(long change) {
         this.accountBalance += change;
@@ -44,7 +40,7 @@ public class Account {
         accountNumber = id;
         accountName = name;
         accountBalance = amount;
-        transactionOccured = false;
+        transactionOccurred = false;
     }
 
 }
