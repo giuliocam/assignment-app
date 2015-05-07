@@ -61,6 +61,10 @@ public class AppTest {
     public void uniqueIDTest1() {
         Assert.assertEquals(true,aDB.addAccount(b));
     }
+    public void uniqueIDTest2() {
+        Assert.assertEquals(true, aDB.addAccount(test));
+        Assert.assertEquals(false,aDB.addAccount(c));
+    }
 
     @Test
     public void balanceTest() {
