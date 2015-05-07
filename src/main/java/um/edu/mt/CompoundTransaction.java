@@ -1,6 +1,7 @@
 package um.edu.mt;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class CompoundTransaction extends Transaction{
@@ -84,10 +85,8 @@ public class CompoundTransaction extends Transaction{
     public ArrayList<Transaction> sortList(String type){
         ArrayList<Transaction> a = iterateList();
 
-        if(type.equalsIgnoreCase("dec")) a.sort(new TransactionComparator2());
-        if(type.equalsIgnoreCase("inc")) a.sort(new TransactionComparator());
-
-        for(Transaction x : a) System.out.println(x.getAmount());
+        if(type.equalsIgnoreCase("dec")) Collections.sort(a, new TransactionComparator2());
+        if(type.equalsIgnoreCase("inc")) Collections.sort(a, new TransactionComparator());
 
         return a;
     }
