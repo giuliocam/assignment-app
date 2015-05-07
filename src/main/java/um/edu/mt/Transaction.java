@@ -7,6 +7,7 @@ public class Transaction { //Atomic Transaction
     private int destinationAccountNumber;
     private long amount;
     private String note = "";
+    private String risk = "";
 
     public Transaction() {
 
@@ -71,6 +72,14 @@ public class Transaction { //Atomic Transaction
 
     public String getInfo() {
         return sourceAccountNumber + "->" + destinationAccountNumber + " " + note;
+    }
+
+    public void setRisk(String s) {
+        risk = s;
+    }
+
+    public String getRisk() {
+        return risk;
     }
 
 }

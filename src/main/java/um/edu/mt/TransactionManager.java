@@ -17,20 +17,11 @@ public class TransactionManager {
         if (check){numTransactionsProcessed++;}
         return check;
     }
-    public boolean processTransaction(Transaction t) {
+
+    public boolean processTransaction(CompoundTransaction t) {
         boolean check = t.process();
         if (check){numTransactionsProcessed++;}
         return check;
-    }
-    public boolean processTransaction(CompoundTransaction t) {
-        ArrayList<Transaction> nt = t.getCompoundTransaction();
-        for (Transaction n:nt){
-            if (! processTransaction(n)) {
-                System.out.println("Error in transaction " + n.getInfo());
-                return false;
-            }
-        }
-        return true;
     }
 
 
