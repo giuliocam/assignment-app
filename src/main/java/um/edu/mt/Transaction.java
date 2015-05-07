@@ -83,6 +83,7 @@ public class Transaction { //Atomic Transaction
     public long getAmount() {
         return amount;
     }
+
     public String getRisk() {
         return risk;
     }
