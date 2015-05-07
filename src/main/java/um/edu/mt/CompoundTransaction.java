@@ -83,26 +83,26 @@ public class CompoundTransaction extends Transaction{
     }
     public ArrayList<Transaction> sortList(String type){
         ArrayList<Transaction> a = iterateList();
-        TransactionComparator c = new TransactionComparator();
 
-        if(type.equalsIgnoreCase("dec")) a.sort(c.reversed());
-        if(type.equalsIgnoreCase("inc")) a.sort(c);
+        if(type.equalsIgnoreCase("dec")) a.sort(new TransactionComparator2());
+        if(type.equalsIgnoreCase("inc")) a.sort(new TransactionComparator());
 
         for(Transaction x : a) System.out.println(x.getAmount());
 
         return a;
     }
     public ArrayList<Transaction> sortList(int src){
-        ArrayList<Transaction> t = new ArrayList<Transaction>();
+        ArrayList<Transaction> nt = new ArrayList<Transaction>();
         for (Transaction n: t){
             if (n instanceof CompoundTransaction){
-                ArrayList<Transaction> temp = sortList(src);
-                t.addAll(temp);
+
+                ArrayList<Transaction> temp = ((CompoundTransaction)n).sortList(src);
+                nt.addAll(temp);
             }else {
-                if(n.getSourceAccount() == src) t.add(n);
+                if(n.getSourceAccount() == src) nt.add(n);
             }
         }
-        return t;
+        return nt;
     }
     public void setRisk(String s) {
         for(Transaction x : t) {
@@ -130,6 +130,16 @@ public class CompoundTransaction extends Transaction{
             long bamount = b.getAmount();
 
             return aamount < bamount ? -1 : bamount == aamount ? 0 : 1;
+        }
+
+    }
+    class TransactionComparator2 implements Comparator<Transaction> {
+        @Override
+        public int compare(Transaction a, Transaction b) {
+            long aamount = a.getAmount();
+            long bamount = b.getAmount();
+
+            return aamount > bamount ? -1 : bamount == aamount ? 0 : 1;
         }
 
     }

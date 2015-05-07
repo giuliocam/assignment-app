@@ -285,7 +285,7 @@ public class AppTest {
         dest.add(1);
         ArrayList<Long> amounts = new ArrayList<Long>();
         amounts.add((long)1000);
-        amounts.add((long)500);
+        amounts.add((long) 500);
         //amounts.add((long)20);
 
 
@@ -383,6 +383,7 @@ public class AppTest {
         ArrayList<Transaction> sortedlist = new ArrayList<Transaction>();
         sortedlist.add(t1);
         sortedlist.add(t3);
+        //System.out.println(sortedlist.size()+ ct3.sortList(1).size());
         Assert.assertTrue(arrayEquals(sortedlist, ct3.sortList(1)));
     }
     public void iterateList(ArrayList<Transaction> list) {
