@@ -88,7 +88,7 @@ public class AppTest {
         aDB.addAccount(b);
 
         boolean transaction = tm.processTransaction(1,2,10);
-        Assert.assertEquals(false, tm.processTransaction(2,1,10));
+        Assert.assertEquals(false, tm.processTransaction(2, 1, 10));
 
     }
     @Test
@@ -157,8 +157,8 @@ public class AppTest {
         db.addAccount(test);
         db.addAccount(b);
 
-        Transaction first = new Transaction(db, 1,2 , 10);
-        Transaction second = new Transaction(db, 2,1 , 10);
+        Transaction first = new Transaction(db, 1,2 , 10,"First");
+        Transaction second = new Transaction(db, 2,1 , 10,"Second");
 
         transactions.add(first);
         transactions.add(second);
@@ -185,7 +185,30 @@ public class AppTest {
         transactions.add(t1);
         transactions.add(t2);
         CompoundTransaction cT = new CompoundTransaction(transactions);
-        Assert.assertEquals(true,tm.processTransaction(cT));
+        Assert.assertEquals(true, tm.processTransaction(cT));
+    }
+    @Test
+    public void FailProcessTransaction(){
+        AccountDatabase db = new AccountDatabase();
+        db.addAccount(test);
+        db.addAccount(b);
+
+        Transaction first = new Transaction(db, 1,2 , 10,"First");
+        Transaction second = new Transaction(db, 2,1 , 10,"Second");
+
+        transactions.add(first);
+        transactions.add(second);
+        CompoundTransaction lct = new CompoundTransaction(transactions);
+
+        ArrayList<Transaction> transactions2 = new ArrayList<Transaction>();
+        Transaction third = new Transaction(db, 1,2 , 100);
+        Transaction forth = new Transaction(db, 2,1 , 20);
+        transactions2.add(third);
+        transactions2.add(forth);
+        transactions2.add(lct);
+        CompoundTransaction ct = new CompoundTransaction(transactions2);
+        TransactionManager tm2 = new TransactionManager(db);
+        Assert.assertFalse(tm2.processTransaction(ct));
     }
 
     @Test
