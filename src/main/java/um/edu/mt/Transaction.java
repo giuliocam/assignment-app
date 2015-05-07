@@ -80,6 +80,9 @@ public class Transaction { //Atomic Transaction
     public int getSourceAccount() {
         return sourceAccountNumber;
     }
+    public long getAmount() {
+        return amount;
+    }
     public String getRisk() {
         return risk;
     }
