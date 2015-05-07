@@ -304,7 +304,7 @@ public class AppTest {
             if(t instanceof CompoundTransaction) {
                 iterateList(((CompoundTransaction) t).getCompoundTransaction());
             }
-            Assert.assertEquals(true, t.getRisk().equals("Low"));
+            Assert.assertEquals(true, t.getRisk().equalsIgnoreCase("Low"));
         }
     }
 
