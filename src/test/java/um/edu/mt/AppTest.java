@@ -11,6 +11,7 @@ public class AppTest {
     ArrayList<Transaction> transactions;
 
     AccountDatabase aDB;
+    AccountDatabase aDB2;
     TransactionManager tm;
 
     Account test, b, c,d,e;
@@ -18,6 +19,7 @@ public class AppTest {
     @Before
     public void init() {
         aDB = new AccountDatabase();
+        aDB2 = new AccountDatabase();
         tm = new TransactionManager(aDB);
         test = new Account(1, "xyz", 1000);
         b = new Account(2, "xyz", 2000);
@@ -254,6 +256,43 @@ public class AppTest {
 
         iterateList(ct3.getCompoundTransaction());
     }
+    @Test
+    public void preset(){
+        //list of transactions, risk , dests (to create),
+
+        //source accounts created and added to db
+        Account s1 = new Account(3123, "s1", 20000);
+        //Account s2 = new Account(8665, "s2", 20000);
+        Account s3 = new Account(3143, "s3", 200000);
+        Account s4 = new Account(3133, "s4", 50000);
+        Account s5 = new Account(6565, "s5", 80000);
+        Account s6 = new Account(6588, "s6", 60000);
+        aDB2.addAccount(s1);
+        //aDB2.addAccount(s2);
+        aDB2.addAccount(s3);
+        aDB2.addAccount(s4);
+        aDB2.addAccount(s5);
+        aDB2.addAccount(s6);
+
+        //create and add destination accounts
+        Account d1 = new Account(4444, "d1", 20000);
+        aDB2.addAccount(d1);
+        aDB2.addAccount(b);
+        aDB2.addAccount(c);
+
+        ArrayList<Integer> dest = new ArrayList<Integer>();
+        dest.add(2);
+        dest.add(1);
+        ArrayList<Long> amounts = new ArrayList<Long>();
+        amounts.add((long)1000);
+        amounts.add((long)500);
+        //amounts.add((long)20);
+
+
+        CompoundTransaction ct = new CompoundTransaction("low",4,500,dest,amounts,aDB2);
+
+    }
+
     @Test
     public void EmptyTransactionTest(){
         CompoundTransaction ct = new CompoundTransaction(transactions);
