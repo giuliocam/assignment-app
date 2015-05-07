@@ -14,17 +14,18 @@ public class CompoundTransaction extends Transaction{
         return t;
     }
 
-/* Repeated Code in TransactionManager
     public boolean process() {
-
-        for(Transaction x : t) {
-            if(!x.process()) {
-                System.out.println("Error in transaction " + x.getInfo());
-                return false;
+        try {
+            for (Transaction x : t) {
+                if (!x.process()) {
+                    throw new Exception("Error in transaction " + x.getInfo());
+                }
             }
+        }catch (Exception e){
+            System.out.println(e.toString());
+            return false;
         }
 
         return true;
     }
-    */
 }
