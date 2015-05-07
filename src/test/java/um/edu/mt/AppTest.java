@@ -149,7 +149,7 @@ public class AppTest {
         transactions.add(first);
         transactions.add(second);
         CompoundTransaction ct = new CompoundTransaction(transactions);
-        Assert.assertEquals(ct, ct.getCompoundTransaction() );
+        Assert.assertSame(transactions, ct.getCompoundTransaction() );
     }
     @Test
     public void CreateComplexCompoundTransaction(){
@@ -171,7 +171,7 @@ public class AppTest {
         transactions2.add(forth);
         transactions2.add(lct);
         CompoundTransaction ct = new CompoundTransaction(transactions2);
-        Assert.assertEquals(ct, ct.getCompoundTransaction() );
+        Assert.assertSame(transactions2, ct.getCompoundTransaction() );
     }
 
     @Test
