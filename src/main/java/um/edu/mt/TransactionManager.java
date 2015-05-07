@@ -1,5 +1,7 @@
 package um.edu.mt;
 
+import java.util.ArrayList;
+
 public class TransactionManager {
     private int numTransactionsProcessed;
     private AccountDatabase db;
@@ -16,10 +18,16 @@ public class TransactionManager {
         return check;
     }
     public boolean processTransaction(Transaction t) {
-        return false;
+        boolean check = t.process();
+        if (check){numTransactionsProcessed++;}
+        return check;
     }
     public boolean processTransaction(CompoundTransaction t) {
-        return false;
+        ArrayList<Transaction> nt = t.getCompoundTransaction();
+        for (Transaction n:nt){
+            if (! processTransaction(n)) return false;
+        }
+        return true;
     }
 
 

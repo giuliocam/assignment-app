@@ -4,15 +4,16 @@ import java.util.ArrayList;
 
 public class CompoundTransaction extends Transaction{
 
-    ArrayList<Transaction>  t;
+    private ArrayList<Transaction>  t;
 
     public CompoundTransaction(ArrayList<Transaction> list) {
         t = list;
     }
 
-    public CompoundTransaction getCompoundTransaction() {
-        return this;
+    public ArrayList<Transaction> getCompoundTransaction() {
+        return t;
     }
+
 
     public boolean process() {
 
